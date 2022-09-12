@@ -2,6 +2,7 @@
   font-family: "Rocher";
   src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
 }
+
 body {
   padding: 0;
   margin: 0;
@@ -20,17 +21,21 @@ h1 {
   text-align: center;
   font-size: 48px;
 }
+
 @font-palette-values --Mint {
   font-family: Rocher;
 }
+
 .mint {
   font-palette: --Mint;
 }
+
 .container {
   margin: 0 auto;
   padding: 20px;
   width: 960px;
 }
+
 .container .buttons {
   display: flex;
   justify-content: space-around;
