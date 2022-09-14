@@ -42,3 +42,12 @@ const colorOnHover = () => {
   })
 }
 colorOnHover();
+
+// const resize = document.getElementById('#resize');
+
+// resize.addEventListener('onclick', (screen) => {
+//   screen = prompt('enter pixels number')
+// })
+buttons.addEventListener('onclick', function () {
+  prompt('hello here')
+})
