@@ -26,13 +26,13 @@ h1 {
   font-size: 48px;
 }
 
-@font-palette-values --Mint {
+/* @font-palette-values --Mint {
   font-family: Rocher;
-}
+} */
 
-.mint {
+/* .mint {
   font-palette: --Mint;
-}
+} */
 
 .container {
   margin: 0 auto;
