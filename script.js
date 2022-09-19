@@ -17,3 +17,37 @@ const drawGrid = (screen) => {
 };
 
 drawGrid(screen);
+
+
+// board.addEventListener('mouseover', changeColor)
+// pixels.forEach(() => {
+//   pixels[0].addEventListener('mouseover', changeColor)
+// });
+// Array.from(board).forEach(pixels => {
+//     pixels.style.backgroundColor = "red";
+//   pixels.style.border = '50px solid blue';
+// })
+// function changeColor () {
+//   console.log(pixels)
+
+//   console.log('color changed');
+// }
+
+const colorOnHover = () => {
+  let pixels = document.querySelectorAll('.pixels');
+  pixels.forEach(pixel => {
+    pixel.addEventListener('mouseover', (e) => {
+      e.target.style.backgroundColor = 'pink';
+    })
+  })
+}
+colorOnHover();
+
+// const resize = document.getElementById('#resize');
+
+// resize.addEventListener('onclick', (screen) => {
+//   screen = prompt('enter pixels number')
+// })
+buttons.addEventListener('onclick', function () {
+  prompt('hello here')
+})
