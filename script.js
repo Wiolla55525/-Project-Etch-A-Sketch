@@ -1,9 +1,14 @@
 const board = document.querySelector(".board");
 const buttons = document.querySelectorAll(".buttons");
 let pixels = "";
-let gridTemplate = 25;
+let gridTemplate = 10;
+
+const resizeBtn = document.getElementById('resize');
+const clearBtn = document.getElementById('clear');
 
 const drawGrid = (screen) => {
+
+  
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < screen ** 2; i++) {
     pixels = document.createElement("div");
@@ -14,6 +19,13 @@ const drawGrid = (screen) => {
 
   board.style.gridTemplateColumns = `repeat(${screen}, auto)`;
   board.style.gridTemplateRows = `repeat(${screen}, auto)`;
+  
+  function clearGrid(){
+    clearBtn.addEventListener('click', () => {
+        pixels.style.backgroundColor = "white"
+   })
+  }
+  clearGrid()
 };
 
 drawGrid(gridTemplate);
@@ -45,7 +57,7 @@ colorOnHover();
 
 console.log('hello');
 
-const resizeBtn = document.getElementById('resize');
+
 
 // resizeBtn.addEventListener('click', (screen) => {
 //   screen = prompt('enter pixels number')
@@ -63,17 +75,17 @@ const resizeBtn = document.getElementById('resize');
 //   drawGrid(gridTemplate);
 // };
 
-resizeBtn.addEventListener('click', ()=>{resetSize()
-})
 
 function resetSize(){
       
       let number = prompt("Please enter new pixels number, which is not more than 100");
-      board.innerHTML = '';
-      board.style.gridTemplateRows = `repeat(${number}, auto)`;
-      board.style.gridTemplateColumns = `repeat(${number}, auto)`;
+      pixels.style.gridTemplateRows = `repeat(${number}, auto)`;
+      pixels.style.gridTemplateColumns = `repeat(${number}, auto)`;
       drawGrid(number);  
 }
+
+resizeBtn.addEventListener('click', resetSize)
+
 
 
 // let colorPainting = 'red';
