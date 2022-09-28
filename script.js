@@ -30,7 +30,22 @@ const drawGrid = (screen) => {
 
 drawGrid(gridTemplate);
 
+const colorOnHover = () => {
+  let pixelsColor = document.querySelectorAll('.pixels');
+  pixelsColor.forEach(pixel => {
+    pixel.addEventListener('mouseover', (e) => {
+      e.target.style.backgroundColor = 'pink';
+    })
+  })
+}
+colorOnHover();
 
+clearBtn.addEventListener('click', () => {
+  board.innerHTML = '' 
+      
+  return drawGrid(gridTemplate) + colorOnHover()
+
+})
 // board.addEventListener('mouseover', changeColor)
 // pixels.forEach(() => {
 //   pixels[0].addEventListener('mouseover', changeColor)
@@ -45,15 +60,7 @@ drawGrid(gridTemplate);
 //   console.log('color changed');
 // }
 
-const colorOnHover = () => {
-  let pixelsColor = document.querySelectorAll('.pixels');
-  pixelsColor.forEach(pixel => {
-    pixel.addEventListener('mouseover', (e) => {
-      e.target.style.backgroundColor = 'pink';
-    })
-  })
-}
-colorOnHover();
+
 
 const colorsBtn = document.getElementById('colors');
 
@@ -65,11 +72,25 @@ const randomColor = () => {
   return color + '1)';
 }
 
-colorsBtn.addEventListener('click', 
-  (e) => {e.target.style.backgroundColor = randomColor();}
+
+
+const active = () => {
+  let pixels = document.querySelectorAll(".pixel");
+  pixels.forEach(pxl => { 
+    pxl.addEventListener('mouseover', (e) => {
+      switch(currentMode){
+    
+        case 'colors':
+          e.target.style.backgroundColor = randomColor();
+          break;
+       ;
+      }
+    });
+  });
+}
+active();
+colorsBtn.addEventListener('click', active
 )
-
-
 
 // resizeBtn.addEventListener('click', (screen) => {
 //   screen = prompt('enter pixels number')
