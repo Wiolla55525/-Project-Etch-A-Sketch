@@ -5,6 +5,8 @@ let gridTemplate = 16;
 
 const resizeBtn = document.getElementById("resize");
 const clearBtn = document.getElementById("clear");
+const blackBtn = document.getElementById("black");
+const pinkBtn = document.getElementById("pink");
 
 const drawGrid = (screen) => {
   // eslint-disable-next-line no-plusplus
@@ -28,15 +30,28 @@ const drawGrid = (screen) => {
 
 drawGrid(gridTemplate);
 
+let activeColor = 'pink'
 const colorOnHover = () => {
   let pixelsColor = document.querySelectorAll(".pixels");
   pixelsColor.forEach((pixel) => {
     pixel.addEventListener("mouseover", (e) => {
-      e.target.style.backgroundColor = "pink";
+      e.target.style.backgroundColor = activeColor;
     });
   });
 };
 colorOnHover();
+
+pinkBtn.addEventListener("click", colorOnHover);
+
+const colorOnHoverBlack = () => {
+  let pixelsColor = document.querySelectorAll(".pixels");
+  pixelsColor.forEach((pixel) => {
+    pixel.addEventListener("mouseover", (e) => {
+      e.target.style.backgroundColor = 'black';
+    });
+  });
+};
+blackBtn.addEventListener("click", colorOnHoverBlack);
 
 clearBtn.addEventListener("click", () => {
   board.innerHTML = "";
@@ -58,29 +73,33 @@ clearBtn.addEventListener("click", () => {
 // }
 
 const colorsBtn = document.getElementById("colors");
-
 const randomColor = () => {
+  console.log('as random colore')
   let color = "rgba(";
   for (let i = 0; i < 3; i++) {
-    color += Math.floor(Math.random() * 255) + ",";
+    color += Math.floor(Math.random() * 600) + ",";
   }
   return color + "1)";
 };
 
-const active = () => {
-  let pixels = document.querySelectorAll(".pixel");
-  pixels.forEach((pxl) => {
-    pxl.addEventListener("mouseover", (e) => {
-      switch (currentMode) {
-        case "colors":
-          e.target.style.backgroundColor = randomColor();
-          break;
-      }
+const active = (e) => {
+  let pixelsColor = document.querySelectorAll(".pixels");
+  // switch (pixelsColor) {
+  //   case 'colors':
+  //     e.target.style.backgroundColor = randomColor();
+
+  // }
+  pixelsColor.forEach((pixel) => {
+    pixel.addEventListener("mouseover", (el) => {
+      el.target.style.backgroundColor = randomColor();
     });
   });
 };
-active();
 colorsBtn.addEventListener("click", active);
+
+
+
+
 
 function resetSize() {
   let number = prompt("Enter new pixels number, which is not more than 100");
