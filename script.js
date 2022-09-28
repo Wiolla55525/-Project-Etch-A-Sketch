@@ -1,8 +1,6 @@
 const board = document.querySelector(".board");
-const buttons = document.querySelectorAll(".buttons");
 let pixels = "";
-let gridTemplate = 16;
-
+const gridTemplate = 16;
 const resizeBtn = document.getElementById("resize");
 const clearBtn = document.getElementById("clear");
 const blackBtn = document.getElementById("black");
@@ -30,9 +28,9 @@ const drawGrid = (screen) => {
 
 drawGrid(gridTemplate);
 
-let activeColor = 'pink'
+const activeColor = "pink";
 const colorOnHover = () => {
-  let pixelsColor = document.querySelectorAll(".pixels");
+  const pixelsColor = document.querySelectorAll(".pixels");
   pixelsColor.forEach((pixel) => {
     pixel.addEventListener("mouseover", (e) => {
       e.target.style.backgroundColor = activeColor;
@@ -44,10 +42,10 @@ colorOnHover();
 pinkBtn.addEventListener("click", colorOnHover);
 
 const colorOnHoverBlack = () => {
-  let pixelsColor = document.querySelectorAll(".pixels");
+  const pixelsColor = document.querySelectorAll(".pixels");
   pixelsColor.forEach((pixel) => {
     pixel.addEventListener("mouseover", (e) => {
-      e.target.style.backgroundColor = 'black';
+      e.target.style.backgroundColor = "black";
     });
   });
 };
@@ -58,48 +56,28 @@ clearBtn.addEventListener("click", () => {
 
   return drawGrid(gridTemplate) + colorOnHover();
 });
-// board.addEventListener('mouseover', changeColor)
-// pixels.forEach(() => {
-//   pixels[0].addEventListener('mouseover', changeColor)
-// });
-// Array.from(board).forEach(pixels => {
-//     pixels.style.backgroundColor = "red";
-//   pixels.style.border = '50px solid blue';
-// })
-// function changeColor () {
-//   console.log(pixels)
-
-//   console.log('color changed');
-// }
 
 const colorsBtn = document.getElementById("colors");
 const randomColor = () => {
-  console.log('as random colore')
   let color = "rgba(";
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < 3; i++) {
+    // eslint-disable-next-line prefer-template
     color += Math.floor(Math.random() * 600) + ",";
   }
+  // eslint-disable-next-line prefer-template
   return color + "1)";
 };
 
-const active = (e) => {
-  let pixelsColor = document.querySelectorAll(".pixels");
-  // switch (pixelsColor) {
-  //   case 'colors':
-  //     e.target.style.backgroundColor = randomColor();
-
-  // }
+const active = () => {
+  const pixelsColor = document.querySelectorAll(".pixels");
   pixelsColor.forEach((pixel) => {
-    pixel.addEventListener("mouseover", (el) => {
-      el.target.style.backgroundColor = randomColor();
+    pixel.addEventListener("mouseover", (e) => {
+      e.target.style.backgroundColor = randomColor();
     });
   });
 };
 colorsBtn.addEventListener("click", active);
-
-
-
-
 
 function resetSize() {
   let number = prompt("Enter new pixels number, which is not more than 100");
