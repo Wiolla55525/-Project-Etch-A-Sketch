@@ -1,7 +1,7 @@
 const board = document.querySelector(".board");
 const buttons = document.querySelectorAll(".buttons");
 let pixels = "";
-let gridTemplate = 10;
+let gridTemplate = 16;
 
 const resizeBtn = document.getElementById('resize');
 const clearBtn = document.getElementById('clear');
@@ -55,7 +55,19 @@ const colorOnHover = () => {
 }
 colorOnHover();
 
-console.log('hello');
+const colorsBtn = document.getElementById('colors');
+
+const randomColor = () => {
+  let color = 'rgba(';
+  for(let i = 0;i< 3;i++){
+    color += Math.floor(Math.random() * 255) + ',';
+  }
+  return color + '1)';
+}
+
+colorsBtn.addEventListener('click', 
+  (e) => {e.target.style.backgroundColor = randomColor();}
+)
 
 
 
@@ -78,10 +90,16 @@ console.log('hello');
 
 function resetSize(){
       
-      let number = prompt("Please enter new pixels number, which is not more than 100");
+      let number = prompt("Enter new pixels number, which is not more than 100");
+      if(number > 100 || number === null) {
+        number = 100;}
       pixels.style.gridTemplateRows = `repeat(${number}, auto)`;
+
       pixels.style.gridTemplateColumns = `repeat(${number}, auto)`;
-      drawGrid(number);  
+      board.innerHTML = ''
+
+      drawGrid(number); 
+      colorOnHover() ;
 }
 
 resizeBtn.addEventListener('click', resetSize)
