@@ -3,12 +3,10 @@ const buttons = document.querySelectorAll(".buttons");
 let pixels = "";
 let gridTemplate = 16;
 
-const resizeBtn = document.getElementById('resize');
-const clearBtn = document.getElementById('clear');
+const resizeBtn = document.getElementById("resize");
+const clearBtn = document.getElementById("clear");
 
 const drawGrid = (screen) => {
-
-  
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < screen ** 2; i++) {
     pixels = document.createElement("div");
@@ -19,33 +17,32 @@ const drawGrid = (screen) => {
 
   board.style.gridTemplateColumns = `repeat(${screen}, auto)`;
   board.style.gridTemplateRows = `repeat(${screen}, auto)`;
-  
-  function clearGrid(){
-    clearBtn.addEventListener('click', () => {
-        pixels.style.backgroundColor = "white"
-   })
+
+  function clearGrid() {
+    clearBtn.addEventListener("click", () => {
+      pixels.style.backgroundColor = "white";
+    });
   }
-  clearGrid()
+  clearGrid();
 };
 
 drawGrid(gridTemplate);
 
 const colorOnHover = () => {
-  let pixelsColor = document.querySelectorAll('.pixels');
-  pixelsColor.forEach(pixel => {
-    pixel.addEventListener('mouseover', (e) => {
-      e.target.style.backgroundColor = 'pink';
-    })
-  })
-}
+  let pixelsColor = document.querySelectorAll(".pixels");
+  pixelsColor.forEach((pixel) => {
+    pixel.addEventListener("mouseover", (e) => {
+      e.target.style.backgroundColor = "pink";
+    });
+  });
+};
 colorOnHover();
 
-clearBtn.addEventListener('click', () => {
-  board.innerHTML = '' 
-      
-  return drawGrid(gridTemplate) + colorOnHover()
+clearBtn.addEventListener("click", () => {
+  board.innerHTML = "";
 
-})
+  return drawGrid(gridTemplate) + colorOnHover();
+});
 // board.addEventListener('mouseover', changeColor)
 // pixels.forEach(() => {
 //   pixels[0].addEventListener('mouseover', changeColor)
@@ -60,83 +57,43 @@ clearBtn.addEventListener('click', () => {
 //   console.log('color changed');
 // }
 
-
-
-const colorsBtn = document.getElementById('colors');
+const colorsBtn = document.getElementById("colors");
 
 const randomColor = () => {
-  let color = 'rgba(';
-  for(let i = 0;i< 3;i++){
-    color += Math.floor(Math.random() * 255) + ',';
+  let color = "rgba(";
+  for (let i = 0; i < 3; i++) {
+    color += Math.floor(Math.random() * 255) + ",";
   }
-  return color + '1)';
-}
-
-
+  return color + "1)";
+};
 
 const active = () => {
   let pixels = document.querySelectorAll(".pixel");
-  pixels.forEach(pxl => { 
-    pxl.addEventListener('mouseover', (e) => {
-      switch(currentMode){
-    
-        case 'colors':
+  pixels.forEach((pxl) => {
+    pxl.addEventListener("mouseover", (e) => {
+      switch (currentMode) {
+        case "colors":
           e.target.style.backgroundColor = randomColor();
           break;
-       ;
       }
     });
   });
-}
+};
 active();
-colorsBtn.addEventListener('click', active
-)
+colorsBtn.addEventListener("click", active);
 
-// resizeBtn.addEventListener('click', (screen) => {
-//   screen = prompt('enter pixels number')
-// })
-// resizeBtn.addEventListener('click', () => prompt('hello here'))
+function resetSize() {
+  let number = prompt("Enter new pixels number, which is not more than 100");
+  if (number > 100 || number === null) {
+    number = 100;
+  }
+  pixels.style.gridTemplateRows = `repeat(${number}, auto)`;
 
-// const resizeScreen = (request) => {
-//   if (request === 'resize') {
-//     gridTemplate = prompt('Please enter new pixels number, which is not more than 100', true);
-//     if(gridTemplate > 100 || gridTemplate === null) {
-//       gridTemplate = 100;
-//     }
-//   }
-//   board.innerHTML = '';
-//   drawGrid(gridTemplate);
-// };
+  pixels.style.gridTemplateColumns = `repeat(${number}, auto)`;
+  board.innerHTML = "";
 
-
-function resetSize(){
-      
-      let number = prompt("Enter new pixels number, which is not more than 100");
-      if(number > 100 || number === null) {
-        number = 100;}
-      pixels.style.gridTemplateRows = `repeat(${number}, auto)`;
-
-      pixels.style.gridTemplateColumns = `repeat(${number}, auto)`;
-      board.innerHTML = ''
-
-      drawGrid(number); 
-      colorOnHover() ;
+  drawGrid(number);
+  colorOnHover();
 }
 
-resizeBtn.addEventListener('click', resetSize)
-
-
-
-// let colorPainting = 'red';
-
-// buttons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     if(button.id === 'resize' || button.id === 'clear'){
-//       resizeScreen(button.id);
-//     }
-//     else{
-//       colorPainting = button.id;
-//       resizeScreen(button.id);
-//     }
-//   });
-// });
+resizeBtn.addEventListener("click", resetSize);
