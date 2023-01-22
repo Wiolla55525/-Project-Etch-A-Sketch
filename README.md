@@ -1,3 +1,9 @@
+The project is hosted with Github Pages and can be observed by going to this link:
+
+https://wiolla55525.github.io/-Project-Etch-A-Sketch/
+
+#
+
 ![starter kit](./img/img.png)
 
 ## :hammer_and_wrench: Project Starter Template :fire:
